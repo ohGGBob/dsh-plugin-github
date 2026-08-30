@@ -1,0 +1,8 @@
+# dsh-plugin-github — bundle patch layer.
+# Profile-bundle patches compose over an EMPTY entry list, so every patch
+# here is an `insert` appending composition rows. This row registers the
+# `github_search` / `github_fetch` / `github_catalog` model tools and the
+# GitHub guidance section host-wide.
+- insert:
+    - id: github
+      name: 'dsh-plugin-github'

@@ -1,0 +1,46 @@
+{
+  "name": "dsh-plugin-github",
+  "version": "0.1.0",
+  "description": "GitHub access for DeepSeek Harness agents: search repositories/code/issues, fetch repo files and metadata, and discover GitHub resources by task type",
+  "type": "module",
+  "main": "lib/index.js",
+  "exports": {
+    ".": "./lib/index.js",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "lib",
+    "cordis.patch.yml",
+    "README.md",
+    "README.zh.md"
+  ],
+  "keywords": [
+    "deepseek-harness",
+    "dsh",
+    "dsh-plugin",
+    "cordis",
+    "plugin",
+    "bundle",
+    "github",
+    "repos",
+    "search"
+  ],
+  "license": "MIT",
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "pluginCenter": {
+      "expectedEntries": [
+        "github"
+      ]
+    }
+  },
+  "peerDependencies": {
+    "@deepseek-ai/cordis": "^4.0.1",
+    "@deepseek-ai/dsh-credentials": "^0.1.0-rc.8",
+    "@deepseek-ai/dsh-system-prompt": "^0.1.0-rc.8",
+    "@deepseek-ai/dsh-tools": "^0.1.0-rc.8",
+    "@deepseek-ai/schemastery": "^3.18.1"
+  }
+}
