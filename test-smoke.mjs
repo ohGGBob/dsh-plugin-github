@@ -14,13 +14,22 @@ const ctx = {
 apply(ctx, {});
 
 console.log("tools registered:", tools.map((t) => t.name).join(", "));
-if (tools.length !== 3) throw new Error(`expected 3 tools, got ${tools.length}`);
+if (tools.length !== 4) throw new Error(`expected 4 tools, got ${tools.length}`);
 for (const t of tools) {
   if (!t.parameters || t.parameters.type !== "object") throw new Error(`${t.name}: bad parameters schema`);
   if (!t.output?.schema) throw new Error(`${t.name}: missing output schema`);
   if (typeof t.execute !== "function") throw new Error(`${t.name}: missing execute`);
   console.log(`  ${t.name}: params=${Object.keys(t.parameters.properties ?? {}).length} props, output schema OK`);
 }
+const push = tools.find((t) => t.name === "github_push");
+if (!push) throw new Error("github_push tool missing");
+const pathSchema = push.parameters?.properties?.path;
+const requiredList = push.parameters?.required ?? [];
+const pathRequired = pathSchema?.required === true || requiredList.includes("path");
+if (!pathSchema || pathSchema.type !== "string" || !pathRequired) {
+  throw new Error("github_push: `path` must be a required string parameter");
+}
+console.log("github_push: path=required:string OK, timeoutMs=" + push.timeoutMs);
 if (sections.length !== 1 || sections[0].name !== "github:instructions") {
   throw new Error("system prompt section not registered");
 }

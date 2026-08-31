@@ -1,7 +1,7 @@
 {
   "name": "dsh-plugin-github",
-  "version": "0.1.0",
-  "description": "GitHub access for DeepSeek Harness agents: search repositories/code/issues, fetch repo files and metadata, and discover GitHub resources by task type",
+  "version": "0.2.0",
+  "description": "GitHub access for DeepSeek Harness agents: search repositories/code/issues, fetch repo files and metadata, discover resources by task type, and publish local projects",
   "type": "module",
   "main": "lib/index.js",
   "exports": {
@@ -23,7 +23,9 @@
     "bundle",
     "github",
     "repos",
-    "search"
+    "search",
+    "publish",
+    "push"
   ],
   "license": "MIT",
   "dsh": {
