@@ -6,3 +6,12 @@
 - insert:
     - id: github
       name: 'dsh-plugin-github'
+      # 基本配置：默认提交者身份 + 凭证引用名。
+      # token 不写在这里 —— `tokenEnv` 只是一个凭证"引用名"，实际密钥由 DSH
+      # 凭证域（~/.dsh/.credentials.yaml 的 GITHUB_TOKEN）解析，模型永远只见名、不见值。
+      config:
+        # 默认提交者（github_push 创建 commit 时使用；留空则回退全局 git 身份）
+        authorName: 'ohGGBob'
+        authorEmail: '255260321+ohGGBob@users.noreply.github.com'
+        # token 凭证引用名（可选，默认 GITHUB_TOKEN）
+        tokenEnv: 'GITHUB_TOKEN'

@@ -1,0 +1,24 @@
+# dsh-plugin-github — 插件基本配置示例
+#
+# 这个文件只作参考，不会被插件直接读取：真实的配置写在 cordis.patch.yml
+# 的 insert 行 `config:` 块里（profile 挂载的 host-plane 插件从那里取配置）。
+# 文件里列出的键与 lib/index.js 的 Config schema 一一对应。
+
+# --- 作者基本信息（非机密，可公开） ---
+# github_push 创建 commit 时的默认提交者身份；留空则回退到全局 git 身份。
+authorName: 'ohGGBob'
+authorEmail: '255260321+ohGGBob@users.noreply.github.com'
+
+# --- 密钥引用名（不是密钥值本身！） ---
+# 这是一个凭证"引用名"，实际密钥由 DSH 凭证域解析（~/.dsh/.credentials.yaml
+# 里的 GITHUB_TOKEN，或系统环境变量）。模型/界面永远只见名字、看不到值。
+# 通常保持默认即可，无需改动。
+tokenEnv: 'GITHUB_TOKEN'
+
+# --- 其余可选调优项（都有默认值，通常无需设置） ---
+# 系统提示词段落顺序（web 工具在 110–111 附近）
+# sectionOrder: 112
+# 任务匹配时返回的 catalog 分类数上限（1–8）
+# maxCatalogCategories: 3
+# 每个工具的协作超时预算（毫秒）
+# timeoutMs: 30000

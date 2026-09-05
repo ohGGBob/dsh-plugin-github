@@ -45,4 +45,16 @@ console.log("catalog(category=ml) head:", byCategory.items[0].split("\n")[0]);
 const browse = await catalog.execute({}, exec);
 console.log("catalog(browse) items:", browse.items.length);
 
+// New: applying with an explicit author identity (and token ref) must stay valid.
+const tools2 = [];
+const ctx2 = {
+  get: () => undefined,
+  tools: { register: (def) => tools2.push(def) },
+  systemPrompt: { section: () => {} },
+  effect: (fn) => { if (typeof fn === "function") fn(); },
+};
+apply(ctx2, { authorName: "Tester", authorEmail: "tester@example.com", tokenEnv: "GITHUB_TOKEN" });
+if (tools2.length !== 4) throw new Error(`expected 4 tools with explicit config, got ${tools2.length}`);
+console.log("explicit author config applied OK (4 tools)");
+
 console.log("SMOKE TEST PASSED");
